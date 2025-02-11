@@ -67,7 +67,8 @@ from pprint import pprint
 # </> 6
 # ----------------
 # quote = 'The answer lies in the heart of battle!'
-# vowel_list = [char for char in quote if char in 'aeiouy']
+# vowel_list = [char.upper() for char in quote if char not in 'aeiouy' and char != ' ']
+# vowel_list = [char.upper() for char in quote if char not in 'aeiouy '] # BAD because hard to read
 # print(vowel_list)
 
 # ----------------
@@ -123,7 +124,8 @@ from pprint import pprint
 
 # --- Exercise
 # fruits = ['apple', 'banana', 'cherry', 'pear', 'kiwi']
-# # write code here
+# fruits[3] = [] # write code here
+# fruits[3] = list()
 # print(fruits)   # ['apple', 'banana', 'cherry', [], 'kiwi']
 
 # ----------------
@@ -197,8 +199,8 @@ from pprint import pprint
 # ----------------
 # string_list = ['a', ['bb', ['ccc', '123'], 'ee', 'ff'], 'g']
 # # --- Exercise
-# print() # 123
-# print() # 2
+# print(string_list[1][1][1]) # 123
+# print(string_list[1][1][1][1]) # 2
 
 # ----------------
 # </> 15
@@ -305,6 +307,8 @@ from pprint import pprint
 # # ----------------
 # # ----------------
 # numbers = ["a", "d", "ccc", "bb"]
+# numbers.sort(key=len,reverse=True)
+# print(numbers)
 
 
 # ----------------
@@ -345,6 +349,7 @@ from pprint import pprint
 # # ----------------
 # fruits = ('apple', 'kiwi', 'orange')
 # fruit1, _, fruit3 = fruits
+# print(_)
 # # ----------------
 # # ----------------
 # fruits = ['apple', 'kiwi', 'orange']
@@ -365,6 +370,35 @@ from pprint import pprint
 # fruits[1][0] = 'cherry'
 # print(fruits)  # ('apple', ['cherry', 'orange']
 # fruits[1] = [] # TypeError: 'tuple' object does not support item assignment
+
+# # --- Exercise
+# # 1)
+# colors = ('red','blue','green')
+
+# # 2)
+# points = (3,7)
+# x, _ = points
+# print(x)
+
+# # 3)
+# numbers = (10,15,25) # editing a literal in a tuple is not possible since tuples are immutable
+
+# # 4)
+# tuple1 = (1,2,3)
+# tuple2 = (4,5,6)
+# tuple3 = tuple1 + tuple2
+# print(tuple3)
+
+# # 5)
+# values = (1,2,2,3,2,4,2,6)
+# num_twos = len([num for num in values if num == 2])
+# print(num_twos)
+# print(values.count(2))
+
+# # 6)
+# points = ((1,2),(3,4),(5,6))
+# y = points[1][1]
+# print(y)
 
 # ----------------
 # </> 23
