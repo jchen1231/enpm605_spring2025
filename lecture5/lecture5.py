@@ -1,13 +1,13 @@
-# # ===================
-# # ====== </1> ======
-# # ===================
-# def my_function():
-#     pass
+# ===================
+# ====== </1> ======
+# ===================
+def my_function():
+    pass
 
 
-# print(callable(my_function))  # True
-# print(callable(42))  # False
-# print(callable([1, 2, 3]))  # False
+print(callable(my_function))  # True
+print(callable(42))  # False
+print(callable([1, 2, 3]))  # False
 
 
 # # ===================
