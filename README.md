@@ -113,3 +113,21 @@ At the end of this lecture, you will learn the following:
 - **Understand Python's Scopes**  
   - Apply the **LEGB rule** for variable resolution.  
   - Modify global variables using the `global` keyword.  
+
+
+---
+
+## Lecture 5 - Functions - Part II
+
+### Learning Objectives
+
+At the end of this lecture, you will learn the following:
+
+- Understand different programming paradigms (Imperative, Procedural, Object-Oriented, and Functional).
+- Focus on Functional Programming:
+  - Pure functions.
+  - Lambda expressions.
+  - First class functions.
+  - Higher-order functions.
+  - Function compositions.
+  - Recursive functions.
