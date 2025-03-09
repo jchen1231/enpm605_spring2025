@@ -1,0 +1,12 @@
+classDiagram
+    class Customer {
+        -_name: str
+        -_age: int
+    }
+
+    class Order {
+        -_customer: Customer
+        -_total: float
+    }
+
+    Order --> Customer : references
