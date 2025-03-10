@@ -104,20 +104,20 @@
 # ====== </8> ======
 # ===================
 
-# def decorate(func):
-#     def wrapper():
-#         print("~*" * 10)
-#         func()  # Closure captures 'func'
-#         print("~*" * 10)
+def decorate(func):
+    def wrapper(*args,**kwargs):
+        print("~*" * 10)
+        func(*args, **kwargs)  # Closure captures 'func'
+        print("~*" * 10)
 
-#     return wrapper
+    return wrapper
 
-# @decorate
-# def say_hello(name=None):
-#     print("Hello", name)
+@decorate
+def say_hello(name=None):
+    print("Hello", name)
 
-# if __name__ == "__main__":
-#     say_hello("Jason") # call wrapper()
+if __name__ == "__main__":
+    say_hello(name="Jason") # call wrapper()
 
 
 # ===================
@@ -140,7 +140,30 @@
 # ====== </10> ======
 # ===================
 
-# Exercise 1
+# # Exercise 1
+# def exclaim_decorate(func):
+#     def wrapper(*args, **kwargs):
+#         return func(*args, **kwargs) + "!!!"
+
+#     return wrapper
+
+
+# def uppercase_decorate(func):
+#     def wrapper(*args, **kwargs):
+#         return func(*args, **kwargs).upper()
+
+#     return wrapper
+
+
+# @exclaim_decorate
+# @uppercase_decorate
+# def greeting(name=""):
+#     return "Hello " + name
+
+
+# # print(uppercase_decorate(greeting)("bob"))
+# print(greeting("Bob"))
+
 
 # ===================
 # ====== </11> ======
@@ -216,7 +239,7 @@
 # def waste_some_time(num_times):
 #     for _ in range(num_times):
 #         sum([i**2 for i in range(10000)])
-    
+
 # waste_some_time(1000)
 
 # # ===================
@@ -318,7 +341,7 @@
 #     nimble.walk_forward()
 #     nimble.walk_backward()
 #     nimble.jump()
-    
+
 #     dash = Robot('Dash', 65.0, 20.0)
 #     print(dash.name, dash.weight, dash.width)
 #     dash.walk_forward()

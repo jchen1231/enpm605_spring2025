@@ -1,13 +1,13 @@
 # ===================
 # ====== </1> ======
 # ===================
-def my_function():
-    pass
+# def my_function():
+#     pass
 
 
-print(callable(my_function))  # True
-print(callable(42))  # False
-print(callable([1, 2, 3]))  # False
+# print(callable(my_function))  # True
+# print(callable(42))  # False
+# print(callable([1, 2, 3]))  # False
 
 
 # # ===================
@@ -133,10 +133,13 @@ print(callable([1, 2, 3]))  # False
 # students = [
 #     {"name": "Alice", "scores": {"math": 85, "english": 78}},
 #     {"name": "Bob", "scores": {"math": 92, "english": 88}},
-#     {"name": "Charlie", "scores": {"math": 78, "english": 90}}
+#     {"name": "Charlie", "scores": {"math": 78, "english": 90}},
 # ]
 
 # # Your code here
+# sorted_math_scores = sorted(students, key=lambda s: s["scores"]["math"], reverse=True)
+# print(sorted_math_scores)
+
 
 # print(sorted_students)
 # # Output: [{'name': 'Bob', ...}, {'name': 'Alice', ...}, {'name': 'Charlie', ...}]
@@ -144,7 +147,7 @@ print(callable([1, 2, 3]))  # False
 # # ===================
 # # ====== </9> ======
 # # ===================
-# concat_strings = # Your lambda function here
+# concat_strings = lambda s1, s2: s1 + " " + s2
 
 # print(concat_strings("Hello", "World"))  # Expected output: "Hello World"
 # print(concat_strings("Lambda", "Functions"))  # Expected output: "Lambda Functions"
@@ -269,7 +272,11 @@ print(callable([1, 2, 3]))  # False
 # # ====== </16> ======
 # # ====================
 
-# Exercise 3
+# # Exercise 3
+# # Applies a 20% discount on the prices
+# price = [100, 50, 75]
+# discounted = map(lambda x: 0.8 * x, price)
+# print(list(discounted))
 
 # # ====================
 # # ====== </17> ======
@@ -288,7 +295,12 @@ print(callable([1, 2, 3]))  # False
 # # ====== </18> ======
 # # ====================
 
-# Exercise 4
+# # Exercise 4
+# # only keep even numbers
+# numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# evens = filter(lambda x: x > 0, numbers)
+# print(list(evens))
+
 
 # # ====================
 # # ====== </19> ======
@@ -383,7 +395,27 @@ print(callable([1, 2, 3]))  # False
 # # ====================
 # # ====== </23> ======
 # # ====================
+
 # Exercise 5
+
+# Define a function that calculates the power of a number given a base and an exponent.
+# Then, using functools.partial(), create a new function that always squares its input.
+# Finally, use this new function to map over a list of numbers.
+
+from functools import partial
+
+
+def power(base: int, exponent: int) -> int:
+    return base**exponent
+
+
+square = partial(power, exponent=2)
+
+nums = list(range(2, 10))
+
+squared_nums = map(square, nums)
+
+print(list(squared_nums))
 
 # # ====================
 # # ====== </24> ======

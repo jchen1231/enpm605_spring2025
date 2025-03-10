@@ -35,7 +35,7 @@ classDiagram
         +perform_task()
     }
 
-    Robot *-- Battery : has
+    Robot --* Battery : has
     Robot o-- Operator : controlled by
     Robot <|-- CarrierRobot : extends
     Robot <|-- ScannerRobot : extends

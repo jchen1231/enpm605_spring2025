@@ -1,5 +1,5 @@
 class Robot(object):
-    # sensors = ["lidar", "camera", "radar"]
+    sensors = ["lidar", "camera", "radar"]
 
     def __init__(self, robot_id: str, model: str, battery_charge_level: float) -> None:
         self.robot_id = robot_id
@@ -14,13 +14,13 @@ class Robot(object):
                 f"{self.model} Robot {self.robot_id} has insufficient battery to move!"
             )
 
-    # def __str__(self):
-    #     return (
-    #         f"Robot ID: {self.robot_id}\n"
-    #         f"Model: {self.model}\n"
-    #         f"Battery Charge Level: {self.battery_charge_level:.2f}\n"
-    #         f"Sensors: {', '.join(self.sensors)}"
-    #     )
+    def __str__(self):
+        return (
+            f"Robot ID: {self.robot_id}\n"
+            f"Model: {self.model}\n"
+            f"Battery Charge Level: {self.battery_charge_level:.2f}\n"
+            f"Sensors: {', '.join(self.sensors)}"
+        )
 
     # def __call__(self, task: str) -> None:
     #     """Allows the robot to be 'called' like a function to perform a task."""
@@ -33,14 +33,13 @@ class Robot(object):
     #         raise TypeError("Unsupported operand types for >")
 
 
-
-
 if __name__ == "__main__":
     titan = Robot(robot_id="TN-8800", model="Titan", battery_charge_level=100.0)
     titan.move("store room", 2)
+    print(titan)
 
-    nomad = Robot(robot_id="NMD-427", model="Nomad", battery_charge_level=50.0)
-    nomad.move("loading dock", 1)
+    # nomad = Robot(robot_id="NMD-427", model="Nomad", battery_charge_level=50.0)
+    # nomad.move("loading dock", 1)
 
     # print(titan > nomad)
     # print(nomad)

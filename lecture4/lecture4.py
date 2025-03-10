@@ -2,6 +2,7 @@
 # # ====== </1> ======
 # # ==================
 
+
 # def greet_user(user_name):
 #     """
 #     Prints a greeting message for the specified user.
@@ -9,12 +10,13 @@
 #     Args:
 #         user_name (str): The name of the user.
 #     """
+
 #     print(f"Hello, {user_name}!")
 
 
 # if __name__ == "__main__":
 #     greet_user("John")
-#     # print(greet_user.__doc__)
+#     print(greet_user.__doc__)
 
 # # ==================
 # # ====== </3> ======
@@ -501,11 +503,12 @@
 # # ====== </39> & </40>  ======
 # # ============================
 def edit_inputs(fruits, animals, age):
-    fruits.append("cherry")
-    fruits[0] = "mango"
-    fruits = ["quince", "pear"]
-    animals = ["elephant"]
+    fruits[0] = "quince"
+    fruits[1] = "pear"
+    animals.clear()
+    animals.append("elephant")
     age += 1
+    return age
 
 
 fruits = ["apple", "banana"]

@@ -1,7 +1,7 @@
 {
   "cmake.configureOnOpen": false,
   "editor.fontFamily": "CommitMono",
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 1,
   "workbench.colorCustomizations": {
     "sideBar.background": "#0e110e",
     "list.hoverBackground": "#283228",
