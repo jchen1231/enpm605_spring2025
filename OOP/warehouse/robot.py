@@ -1,16 +1,17 @@
 import re
-import warehouse.operator
-import warehouse.battery
+from warehouse.operator import Operator
+from warehouse.battery import Battery
+
 
 class Robot:
     _total_robots = 0  # Class attribute shared by all instances
 
-    def __init__(self, robot_id: str, model: str, battery: warehouse.battery.Battery) -> None:
-        if Robot.validate_robot_id(robot_id):
+    def __init__(self, robot_id: str, model: str, battery_capacity: int):
+        if Robot._validate_robot_id(robot_id):
             self._robot_id = robot_id
         self._model = model
-        self._operator = None
-        self._battery = battery
+        self._operator = Operator("N/A")
+        self._battery = Battery(battery_capacity)
         Robot._total_robots += 1  # Increment class attribute
 
     @property
@@ -19,6 +20,11 @@ class Robot:
         Name of the operator
         """
         return self._operator
+
+    # @operator.setter
+    # def operator(self, operator:Operator):
+    #     self._operator = operator
+    #     print(f"Robot {self._robot_id} has been assigned a new operator: {self._operator.name}")
 
     @property
     def robot_id(self):
@@ -45,18 +51,14 @@ class Robot:
         raise AttributeError("Modifying the model is not allowed.")
 
     @property
-    def battery_charge_level(self):
+    def battery(self):
         """
-        Charge level of the battery attached to the robot
+        Battery attached to the robot
         """
-        return self._battery_charge_level
-
-    @battery_charge_level.setter
-    def battery_charge_level(self, battery_charge_level):
-        raise AttributeError("Modifying the battery charge level is not allowed.")
+        return self._battery
 
     @staticmethod
-    def validate_robot_id(robot_id):
+    def _validate_robot_id(robot_id):
         """
         Ensures that the robot_id follows the format:
         - Letters before the dash
@@ -72,7 +74,8 @@ class Robot:
             return True
         else:
             raise ValueError(
-                "Invalid model format. Expected format: 'Letters-Numbers' (e.g., 'TN-8800')."
+                "Invalid model format.\n"
+                "Expected format: 'Letters-Numbers' (e.g., 'TN-8800')."
             )
 
     @classmethod
@@ -97,7 +100,8 @@ class Robot:
         # Ensure the prefix matches a known model
         if model_prefix not in model_mapping:
             raise ValueError(
-                f"Invalid robot ID prefix: '{model_prefix}'. Expected one of {list(model_mapping.keys())}."
+                f"Invalid robot ID prefix: '{model_prefix}'.\n"
+                f"Expected one of {list(model_mapping.keys())}."
             )
 
         model = model_mapping[model_prefix]
@@ -109,7 +113,7 @@ class Robot:
             f"Robot ID: {self._robot_id}\n"
             f"Model: {self._model}\n"
             f"Operator: {self._operator.name}\n"
-            f"Battery Charge Level: {self._battery_charge_level:.2f}"
+            f"Battery Charge Level: {self._battery.charge_level}"
         )
 
     def __call__(self, task: str) -> None:
@@ -118,17 +122,25 @@ class Robot:
 
     def __gt__(self, other):
         if isinstance(other, Robot):
-            return self._battery_charge_level > other.battery_charge_level
+            return self._battery.charge_level > other._battery.charge_level
         else:
             raise TypeError("Unsupported operand types for >")
 
     def move(self, destination: str, time_required) -> None:
-        if self._battery_charge_level >= time_required:
+        if self._battery.charge_level >= time_required:
             print(f"{self._model} Robot {self._robot_id} is moving to {destination}")
+            self._battery.use(time_required)
         else:
             print(
-                f"{self._model} Robot {self._robot_id} has insufficient battery to move!"
+                f"{self._model} Robot {self._robot_id} has insufficient battery to move...recharging"
             )
+            self._battery.recharge()
 
-    def assign_operator(self, operator: warehouse.operator.Operator):
+    def assign_operator(self, operator: Operator):
         self._operator = operator
+        print(
+            f"Robot {self._robot_id} has been assigned a new operator: {self._operator.name}"
+        )
+
+    def perform_task(self):
+        print(f"Robot {self._robot_id} is performing a task")

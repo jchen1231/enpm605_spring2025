@@ -1,12 +1,11 @@
 class Battery:
 
-    def __init__(self, capacity: int, charge_level: int) -> None:
-        if not capacity >= 0:
-            raise ValueError("Invalid value for the capacity.")
-        if not charge_level >= 0:
-            raise ValueError("Invalid value for the charge_level.")
+    def __init__(self, capacity: int) -> None:
+        if not capacity < 0:
+            raise ValueError("Capacity value must be a positive number.")
+       
         self._capacity = capacity
-        self._charge_level = charge_level
+        self._charge_level = capacity  # Battery starts fully charged
         
     @property
     def capacity(self):
@@ -17,7 +16,14 @@ class Battery:
         return self._charge_level
     
     def use(self, hours):
-        pass
-    
+        """Battery power decreases when the robot is used."""
+        if self._charge_level >= hours:
+            self._charge_level -= hours
+            print(f"Battery used for {hours} hours. Remaining charge: {self._charge_level}/{self._capacity} hours.")
+        else:
+            print("Battery too low! Recharge needed.")
+
     def recharge(self):
-        pass
+        """Recharges battery to full capacity."""
+        self._charge_level = self._capacity
+        print("Battery fully recharged.")

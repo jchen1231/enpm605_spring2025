@@ -8,14 +8,22 @@ sys.path.append(path)
 from warehouse.robot import Robot
 from warehouse.operator import Operator
 from warehouse.battery import Battery
+from warehouse.scanner_robot import ScannerRobot
+from warehouse.sorter_robot import SorterRobot
+from warehouse.carrier_robot import CarrierRobot
 
 
 if __name__ == "__main__":
-    # titan = Robot(robot_id="TN-8800", model="Titan", battery_charge_level=20.0)
+    # -----------------
+    # Class method: Access class attributes
+    # -----------------
+    # titan = Robot(robot_id="TN-8800", model="Titan", battery_capacity=20.0)
     # print(Robot.get_total_robots()) # 1
-    # nomad = Robot(robot_id="NMD-427", model="Nomad", battery_charge_level=50.0)
+    # nomad = Robot(robot_id="NMD-427", model="Nomad", battery_capacity=50.0)
     # print(Robot.get_total_robots()) # 2
-    
+
+    # -----------------
+    # Class method: Object factory
     # -----------------
     # try:
     #     robot1 = Robot.build_from_id("TN-8800", 75)
@@ -29,7 +37,39 @@ if __name__ == "__main__":
     #     print(f"Error: {e}")
     
     # -----------------
-    titan = Robot(robot_id="TN-8800", model="Titan", battery=Battery(200, 80))
-    operator = Operator("John Doe")
-    titan.assign_operator(operator)
-    print(titan)
+    # Static method
+    # -----------------
+    # titan = Robot(robot_id="T4N-8800", model="Titan", battery_capacity=20.0)
+
+    
+    # -----------------
+    # Aggregation
+    # -----------------
+    # titan = Robot(robot_id="TN-8800", model="Titan", battery_capacity=100)
+    # john = Operator("John Doe")
+    # titan.assign_operator(john)
+    # john.give_instruction(titan, "go to workcell")
+
+    # nomad = Robot(robot_id="NMD-427", model="Nomad", battery_capacity=50)
+    # john.give_instruction(nomad, "go to workcell")
+
+    # -----------------
+    # testing inheritance
+    # -----------------
+    # scanner_robot = ScannerRobot("SCN-3323", "Scanner", 100, 5.0)
+    # sorter_robot = SorterRobot("SOR-34423", "Sorter", 80, 15)
+    # carrier_robot = CarrierRobot("CAR-101", "Carrier", 70, 50.7)
+    
+    # -----------------
+    # method overriding
+    # -----------------
+    # scanner_robot = ScannerRobot("SCN-3323", "Scanner", 100, 5.0)
+    # sorter_robot = SorterRobot("SOR-34423", "Sorter", 80, 15)
+    # carrier_robot = CarrierRobot("CAR-101", "Carrier", 70, 50.7)
+    
+    # robots = [scanner_robot, sorter_robot, carrier_robot]
+    
+    # for robot in robots:
+    #     robot.perform_task()
+    
+    
